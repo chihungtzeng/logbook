@@ -10,6 +10,7 @@ I use it to keep track of my activities as another form of dairy.
 Logs
 --
 2017
+* 12/15 預計：接續 dependency injection 的工作。
 * 12/14 預計：因應新db，client 的 wrapper 測試程式改成 dependency injection 的方式。實際：把一部分的 python code 改掉了，但 python 2.7 沒有 unittest.mock 的 patch decorator，為了維持簡單的開發環境又不想裝 mock pacakge，只好連 source code 也一起改動。
 * 12/13 預計：研究LSI. 實際：看了Deerwester的paper， 學習SVD及LSI之間的關係。筆記如下：
     * 用SVD産生一個近似距陣([code](code/20171213/matrix_approx_svd.py))
