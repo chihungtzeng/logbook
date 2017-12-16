@@ -10,7 +10,12 @@ I use it to keep track of my activities as another form of dairy.
 Logs
 --
 2017
-* 12/15 預計：接續 dependency injection 的工作。
+* 12/17 預計：把elasticsearch的某個type弄到可以自動化更新內容。
+* 12/16 預計：接續 dependency injection 的工作。實際：如預計。另清除mongodb裡用來作文字搜尋的欄位，還在查一下基本的elasticsearch查詢功能。
+    * 刪除es整個index:```curl -XDELETE http://localhost:9200/your_index_name```
+    * 顯示es的硬碟使用情況: ```curl http://localhost:9200/_cat/shards?v```
+    * 顯示不特定文件: ```curl http://localhost:9200/your_index/your_type/_search```
+* 12/15 預計：接續 dependency injection 的工作。實際：先改金額判斷的bug.
 * 12/14 預計：因應新db，client 的 wrapper 測試程式改成 dependency injection 的方式。實際：把一部分的 python code 改掉了，但 python 2.7 沒有 unittest.mock 的 patch decorator，為了維持簡單的開發環境又不想裝 mock pacakge，只好連 source code 也一起改動。
 * 12/13 預計：研究LSI. 實際：看了Deerwester的paper， 學習SVD及LSI之間的關係。筆記如下：
     * 用SVD産生一個近似距陣([code](code/20171213/matrix_approx_svd.py))
