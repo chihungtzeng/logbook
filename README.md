@@ -10,7 +10,8 @@ I use it to keep track of my activities as another form of dairy.
 Logs
 --
 2017
-* 12/17 預計：把elasticsearch的某個type弄到可以自動化更新內容。
+* 12/18 預計：寫一個玩具性質的 tensorflow 程式。
+* 12/17 預計：把elasticsearch的一個type弄到可以自動化更新內容。實際：如預計。
 * 12/16 預計：接續 dependency injection 的工作。實際：如預計。另清除mongodb裡用來作文字搜尋的欄位，還在查一下基本的elasticsearch查詢功能。
     * 刪除es整個index:```curl -XDELETE http://localhost:9200/your_index_name```
     * 顯示es的硬碟使用情況: ```curl http://localhost:9200/_cat/shards?v```
