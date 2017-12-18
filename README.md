@@ -10,7 +10,11 @@ I use it to keep track of my activities as another form of dairy.
 Logs
 --
 2017
-* 12/18 預計：寫一個玩具性質的 tensorflow 程式。
+* 12/19 預計：試用tensorboard。
+* 12/18 預計：寫一個玩具性質的 tensorflow 程式。實際：如預期，做一個預測圓半徑的文具問題，讓程式去逼進預期的答案，但建出來的model不夠好，原因在於目標函數設計的不好，另一方面在於對tensorflow的認識還遠遠不足([code](code/20171218/guess_radius.py))。
+    * 本日另修正es的自動更新程式，原本在判斷doc是否已在es裡的邏輯有誤。
+    * 印出 LSI 和 LDA 的原始論文，開始補足自身知識的不足。
+    * 試用 angucomplete, 發現在 input tag 裡不起作用，要放在 div 裡才可以；另可以使用 GET 去取得 json 的，可以angucomplete裡找到 github 的 API 範例。目前看來，angucomplete 目前還沒有運用的地方。
 * 12/17 預計：把elasticsearch的一個type弄到可以自動化更新內容。實際：如預計。
 * 12/16 預計：接續 dependency injection 的工作。實際：如預計。另清除mongodb裡用來作文字搜尋的欄位，還在查一下基本的elasticsearch查詢功能。
     * 刪除es整個index:```curl -XDELETE http://localhost:9200/your_index_name```
