@@ -10,6 +10,7 @@ import random
 import math
 import tensorflow as tf
 import matplotlib.pyplot as plt
+LOG_PATH = "/mnt/ramdisk/tensorboard-logs"
 
 
 def gen_approx_points(radius=2.7, num_points=50):
@@ -42,8 +43,15 @@ def __guess_radius(points):
     train = optimizer.minimize(square_sum)
     sess = tf.Session()
     sess.run(init)
-    for _ in xrange(0, 100):
-        sess.run(train, {x: x_train, y: y_train})
+    # Create a summary to monitor cost tensor
+    tf.summary.scalar("square_sum", square_sum)
+    # Merge all summaries into a single op
+    merged_summary_op = tf.summary.merge_all()
+
+    tensorboard_writer = tf.summary.FileWriter(LOG_PATH, graph=tf.get_default_graph())
+    for step in xrange(0, 100):
+        _, summary = sess.run([train, merged_summary_op],
+                              {x: x_train, y: y_train})
     guessed_r, ssum = sess.run([r, square_sum], {x: x_train, y: y_train})
     print("guessed_r: {}".format(guessed_r))
     print("ssum: {}".format(ssum))
@@ -69,6 +77,11 @@ def main():
     # output = "/mnt/ramdisk/guess_radius.pdf"
     # plt.savefig("/mnt/ramdisk/guess_radius.pdf")
     # logging.info("Save to %s", output)
+
+    print(("Run the command line:\n"
+           "--> tensorboard --logdir={}\n"
+           "Then open http://0.0.0.0:6006/ "
+           "into your web browser").format(LOG_PATH))
 
 if __name__ == "__main__":
     main()

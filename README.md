@@ -10,7 +10,10 @@ I use it to keep track of my activities as another form of dairy.
 Logs
 --
 2017
-* 12/19 預計：試用tensorboard。
+* 12/20 預計：處理T122 金額判斷裡的tricky cases.
+* 12/19 預計：試用tensorboard。實際：如預期，tensorboard很容易弄出來，約十分鐘內搞定([code](code/20171218/guess_radius.py))，但覺得要做到細緻還是需要study一下。今日雜記：
+    * 修正金額判斷程式，並用程式對es的type作in-place的更新。
+    * 寫程式判斷一段文字是否值得顯示出來，如一般人不會對程序類的段落感興趣，預設應隱藏起來，故用新增欄位記錄這樣的屬性，另考慮過直接把這樣的段落從es裡刪除，但此法可能會讓有意思的段落（出現機率很小）永遠不會被挖出來。
 * 12/18 預計：寫一個玩具性質的 tensorflow 程式。實際：如預期，做一個預測圓半徑的文具問題，讓程式去逼進預期的答案，但建出來的model不夠好，原因在於目標函數設計的不好，另一方面在於對tensorflow的認識還遠遠不足([code](code/20171218/guess_radius.py))。
     * 本日另修正es的自動更新程式，原本在判斷doc是否已在es裡的邏輯有誤。
     * 印出 LSI 和 LDA 的原始論文，開始補足自身知識的不足。
