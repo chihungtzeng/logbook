@@ -10,7 +10,8 @@ I use it to keep track of my activities as another form of dairy.
 Logs
 --
 2017
-* 12/20 預計：處理T122 金額判斷裡的tricky cases.
+* 12/21 預計：幫台北的pc昇級資料庫。
+* 12/20 預計：處理T122 金額判斷裡的tricky cases. 實際：新增幾個判斷金額的邏輯，並標記程式無法處理的case。
 * 12/19 預計：試用tensorboard。實際：如預期，tensorboard很容易弄出來，約十分鐘內搞定([code](code/20171218/guess_radius.py))，但覺得要做到細緻還是需要study一下。今日雜記：
     * 修正金額判斷程式，並用程式對es的type作in-place的更新。
     * 寫程式判斷一段文字是否值得顯示出來，如一般人不會對程序類的段落感興趣，預設應隱藏起來，故用新增欄位記錄這樣的屬性，另考慮過直接把這樣的段落從es裡刪除，但此法可能會讓有意思的段落（出現機率很小）永遠不會被挖出來。
