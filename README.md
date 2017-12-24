@@ -10,7 +10,14 @@ I use it to keep track of my activities as another form of dairy.
 Logs
 --
 2017
-* 12/21 預計：幫台北的pc昇級資料庫。
+* 12/25 預計：摧人把資料搬到公開server上。
+* 12/24 預計：今天星期日兼聖誕夜，Relax
+* 12/23 預計：把NNLM的paper看過一遍。實際：很快掃過，看得不深，大致上知道目前的研究成果為何。
+* 12/22 預計：開會討論看有什麼事情要進行。實際：如預期。
+    * 把寫錯字的句子改正，使之能使程式産生正確的金額，此部分涉及把寫錯字的句子都找出來，以免發生改到不該改的情況。
+    * 區分出金額為 0 及無法判斷這兩種情況，避免把他們混在一起談。
+    * 把醫療的資料重新生出來。
+* 12/21 預計：幫台北的pc昇級資料庫。實際: Ongoing, 太多資料要更新了。
 * 12/20 預計：處理T122 金額判斷裡的tricky cases. 實際：新增幾個判斷金額的邏輯，並標記程式無法處理的case。
 * 12/19 預計：試用tensorboard。實際：如預期，tensorboard很容易弄出來，約十分鐘內搞定([code](code/20171218/guess_radius.py))，但覺得要做到細緻還是需要study一下。今日雜記：
     * 修正金額判斷程式，並用程式對es的type作in-place的更新。
@@ -34,4 +41,3 @@ Logs
     * 同一個字在不同句子裡有不同意思（如 Apple makes iPods 裡的 Apple 是一家公司，不是水果)，LSI 無法做字詞意義上的區分。
 * 12/12 預計：研究SVD的feature extraction. 實際：sklearn， numpy的SVD有些微差異，尚看不出如何運用SVD算相似性，另在過程中學到了如何使用pandas以及TFIDF運作方式，算額外收獲。
 * 12/11 預計：JS UnitTest. 實際： 進度超前，因此外加研究SVD及fake news的code.
-
