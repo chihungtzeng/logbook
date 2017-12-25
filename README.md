@@ -10,7 +10,10 @@ I use it to keep track of my activities as another form of dairy.
 Logs
 --
 2017
-* 12/25 預計：摧人把資料搬到公開server上。
+* 12/26 預計：把 Baroni 的 paper 看完。
+* 12/25 預計：摧人把資料搬到公開server上。實際：Done.
+    * gensim.parsing.preprocessing.STOPWORDS 包括not, him, she等字，也許表示在分析語意時，電腦並不是像人一樣理解句子的意義，而是在解析句子的結構及其統計上的特性。
+    * 在已知敗訴時，把准許金額設成 0.
 * 12/24 預計：今天星期日兼聖誕夜，Relax
 * 12/23 預計：把NNLM的paper看過一遍。實際：很快掃過，看得不深，大致上知道目前的研究成果為何。
 * 12/22 預計：開會討論看有什麼事情要進行。實際：如預期。
