@@ -10,7 +10,9 @@ I use it to keep track of my activities as another form of dairy.
 Logs
 --
 2017
-* 12/27 預計：看一下skip gram是怎麼實作的。
+* 12/27 預計：看一下 skip gram 是怎麼實作的。實際：程式碼和原始paper要對照著看，不然會看不懂。
+    * 寫個小程式追縱mongodb的空間使用量。
+    * LDA, HDP 可以online training,
 * 12/26 預計：把 Baroni 的 paper 看完。實際：搭著Mikolov的paper一起看，從不同作者的角度看這些模型的設計。
     * mc 的功能放到server上，結果大家都注意超高的金額case,沒在關心事實, 囧。
 * 12/25 預計：摧人把資料搬到公開server上。實際：Done.
