@@ -10,6 +10,8 @@ I use it to keep track of my activities as another form of dairy.
 Logs
 --
 2017
+* 12/29 預計：看user回報的feedback，把問題修一修。
+* 12/28 預計：陪人去台中面試。實際：如預期。
 * 12/27 預計：看一下 skip gram 是怎麼實作的。實際：程式碼和原始paper要對照著看，不然會看不懂。
     * 寫個小程式追縱mongodb的空間使用量。
     * LDA, HDP 可以online training,
