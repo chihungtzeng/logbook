@@ -11,7 +11,10 @@ Logs
 --
 
 2018
-* 1/28 預計：試玩angularjs的route功能。
+* 1/30 預計：研究如何做fuzzy search.
+* 1/29 預計：把設定功能弄好。實際：把select element移出dropdown menu, 簡化設計並解決flicker問題。
+* 1/28 預計：試玩angularjs的route功能。實際：抓到angularjs的bug -- stack exceeded size. 再加上route功能會增加網頁的複雜度，也許用簡單的tag及layout組合可以避免使用route.
+  * 把法律的選項資料從後端移到前端。
 * 1/27 預計：新增減刑的查詢功能。實際：初步的輪廓已完成，目前缺背景圖，以及需要修正選取法條時的閃退問題。
 * 1/26 預計：寫程式找出各種慰撫金的表示方式。實際：Done.
 * 1/25 預計：改進金額判斷的準度。實際：Done.
