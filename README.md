@@ -11,7 +11,14 @@ Logs
 --
 
 2018
-* 2/6 預計：trace word2vec的程式。
+* 2/8 預計：繼續trace word2vec. 實際：把程式做了一些註解，放在[code](code/20180208/word2vec.py).
+  * [word2vec_commented](https://github.com/chrisjmccormick/word2vec_commented): A great reference to understanding word2vec.
+* 2/7 預計：繼續trace word2vec的程式。實際：到google查word2vec的詳細流程圖，沒找到太具體的結果，就真的trace程式吧。
+  * wv.vocab 長度為unique字詞的數量
+  * wv.index2word[index] 可 return 對應的字串
+  * syn1neg: type 為 numpy.ndarray, 大小為 (|words| * |vector dimension|), 初始值全為 0.
+  * vectors_lockf: type 為 numpy.ndarray, 大小為 (|words| * 1), 初始值全為 1.
+* 2/6 預計：trace word2vec的程式。實際：去外地拜訪親友，只驗証了是否word embedding是否長度為1.
 * 2/5 預計：把原告主張的段落用點選的方式顯示。實際：Done. 用collapse做比dropdown menu來得簡潔。
 * 2/4 預計：沿續前一天的事務，把前端的功能做出來。實際：Done.
 * 2/3 預計：把同判決書的有關慰撫金的段落整合在一起。實際：Done.
