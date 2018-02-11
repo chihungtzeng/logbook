@@ -11,11 +11,8 @@ Logs
 --
 
 2018
+* 2/11 預計：研究T149這個issue. 實際: Done. 非我程式之因也。
 * 2/10 預計：研究一下doc2vec及其應用。實際：使用內線交易的段落去訓練doc2vec, 但相似性比對的結果沒有很好。
-  * 段落的相似性比對只能針對training data set做，無法給定一個新的paragraph, 去找出model裡最相近的段落。
-  * doc2vec很吃RAM, 無法訓練全部的段落，只能訓練一部分，也許降低embedding的維度可以workaround此問題。
-  * 下載了原始[doc2vec論文](http://arxiv.org/pdf/1405.4053v2.pdf)回來看，概念和word2vec很像，也印証了一些在看word2vec時的猜想。
-  * 把skip gram流程圖畫出來（只考慮negative sampling的情況）, 如下圖. 其中syn0裡面存的即為每個字的embedding. ![skip gram flowchart](code/20180208/word2vec_skipgram.png).
 * 2/9 預計：畫出word2vec的high level diagram. 實際：Done.
   * neural network的inner layer weights和output layer weights更新動作及目的和我猜測的相去不遠，都是為了把output調到(1, 0, 0,...). 在更新的過程中用到了外積等運算，讓程式看來很難懂。
 * 2/8 預計：繼續trace word2vec. 實際：把程式做了一些註解，放在[code](code/20180208/word2vec.py).
