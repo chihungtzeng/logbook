@@ -11,6 +11,7 @@ Logs
 --
 
 2018
+* 2/12 預計：研究Logistic Regression. 實際：sklearn裡有內建的function, 看起來是很有趣也實用的概念，要想一下可以應用在那裡。
 * 2/11 預計：研究T149這個issue. 實際: Done. 非我程式之因也。
 * 2/10 預計：研究一下doc2vec及其應用。實際：使用內線交易的段落去訓練doc2vec, 但相似性比對的結果沒有很好。
 * 2/9 預計：畫出word2vec的high level diagram. 實際：Done.
