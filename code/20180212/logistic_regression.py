@@ -27,7 +27,6 @@ def main():
     train_x = np.array(HOURS)
     train_x = train_x.reshape(-1, 1)
     train_y = np.array(EXAM_RESULTS)
-#    train_y = train_y.reshape(-1, 1)
     logreg.fit(train_x, train_y)
     print("logreg score: {}".format(logreg.score(train_x, train_y)))
 

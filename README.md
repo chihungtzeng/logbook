@@ -11,6 +11,7 @@ Logs
 --
 
 2018
+* 2/13 預計：研究非數值資料在logistic regression 中要如何處理。實際：pandas 裡有內建get_dummies和join的function call, 可以處理此問題，例如，如果變數sex有male和female兩個值，就建出sex_male 和 sex_femal兩個dummy variables, 其值為0或1，之後再交給logistic regression處理。
 * 2/12 預計：研究Logistic Regression. 實際：sklearn裡有內建的function, 看起來是很有趣也實用的概念，要想一下可以應用在那裡。
 * 2/11 預計：研究T149這個issue. 實際: Done. 非我程式之因也。
 * 2/10 預計：研究一下doc2vec及其應用。實際：使用內線交易的段落去訓練doc2vec, 但相似性比對的結果沒有很好。
