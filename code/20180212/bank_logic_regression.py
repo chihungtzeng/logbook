@@ -54,7 +54,7 @@ def __create_dummy_variables(data):
     cat_vars = ["job", "marital", "education", "default", "housing",
                 "loan", "contact", "month", "day_of_week", "poutcome"]
     for var in cat_vars:
-        cat_list = pandas.get_dummies(data[var], prefix=var)
+        cat_list = pandas.get_dummies(data[var], prefix=var, drop_first=True)
         data = data.join(cat_list)
     # Remove the origin vars related to dummy variables
     columns_all = data.columns.values.tolist()
@@ -86,7 +86,8 @@ def __select_features(data, num_features):
 
 
 def __train_logistic_regression(data):
-    for num_features in xrange(1, 7):
+    total_columns = len(data.columns.values.tolist())
+    for num_features in xrange(total_columns, total_columns + 1):
         features = __select_features(data, num_features)
         print(features)
 
@@ -95,7 +96,7 @@ def __train_logistic_regression(data):
         logreg = LogisticRegression()
         logreg.fit(train_x, train_y)
         print(("Accuracy of logistic regression classifier on test set: "
-               "{:.2f}".format(logreg.score(test_x, test_y))))
+               "{}".format(logreg.score(test_x, test_y))))
 
 
 def main():
