@@ -11,7 +11,14 @@ Logs
 --
 
 2018
-* 2/14 預計：把刑事案的主條文找出來。
+* 2/15~2/16 農曆新年，休息。
+  * 家中電腦因硬體問題，常常在emerge時出現segmentation fault，解決方法:
+  ```
+  ebuild xxx.ebuild compile
+  ebuild xxx.ebuild install
+  ebuild xxx.ebuild qmerge
+  ```
+* 2/14 預計：把刑事案的主條文找出來。實際:進行中，目前方法可以找出75%的資料。
 * 2/13 預計：研究非數值資料在logistic regression 中要如何處理。實際：pandas 裡有內建get_dummies和join的function call, 可以處理此問題，例如，如果變數sex有male和female兩個值，就建出sex_male 和 sex_femal兩個dummy variables, 其值為0或1，之後再交給logistic regression處理。
 * 2/12 預計：研究Logistic Regression. 實際：sklearn裡有內建的function, 看起來是很有趣也實用的概念，要想一下可以應用在那裡。
 * 2/11 預計：研究T149這個issue. 實際: Done. 非我程式之因也。
