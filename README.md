@@ -11,9 +11,14 @@ Logs
 --
 
 2018
-* 3/8 預計：檢查証據列表是否有其他的模式尚未被找出來。
+* 3/10 預計：研究phabricator, git push, code review要如何整合。實際：Done. phabricator那邊主要是做code review, review完了之後，user還是要自己執行git commit and git push。
+  * 為了控制那些commit可以push到remote repository, 在remote repository那邊要設好pre-receive hook, 只要hook return 1, 上code的人就無法把成功執行git push.
+* 3/9 預計：研究unsupervised learning。實際：大略把unsupervised learning的研究成果掃過一遍，有些研究和NLP處理相關，但還不知道可以怎麼應用。
+* 3/8 預計：檢查証據列表是否有其他的模式尚未被找出來。實際:Done.
+  * 學到了mini-batch和epoch這兩個術語的差別。
 * 3/7 預計：找出証據列表的句子。實際：Done.
 * 3/6 預計：把類別名稱做正規化，現行不同的類別名稱其實對應到同一類別，應統一化他們。實際：Done.
+  * 摘錄Misbehaving裡一段對behavioral economics的defense (Chapter 17): I tend to view to study of behavioral extensions of these efficient market models as leading in a sense to the enhancement of the efficient market models. I could teach the efficient market models to my students with much more relish if I could describe them as extreme special cases before moving to the more realistic models.
 * 3/5 預計：把文字內容做正規化，把各別作者的寫作差異儘量消除掉。實際：Done.
 * 3/4 預計：完成db的重組。實際：會造成程式當掉的case都已處理完成，但極少數的document太肥，超過了db對單一document的大小限制，於是重新layout。
   * 看了CNN(Convolutional Neural Network)的作法和程式，CNN是個很強的工具，但tensorflow包得很high level, 目前我對CNN的知識還不足以駕御使用它。
