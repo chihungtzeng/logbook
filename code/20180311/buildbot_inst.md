@@ -10,6 +10,10 @@ For version >= 1.0
 ```
 pip install buildbot
 pip install buildbot-worker
+pip install buildbot-www
+pip install buildbot-waterfall-view
+pip install buildbot-console-view
+pip install buildbot-grid-view
 ```
 
 For version < 1.0
