@@ -4,6 +4,20 @@ emerge buildbot buildbot-slave
 virtualenv venv-buildbot
 source venv-buildbot/bin/activate
 
+Install buildbot
+----------------
+For version >= 1.0
+```
+pip install buildbot
+pip install buildbot-worker
+```
+
+For version < 1.0
+```
+pip install buildbot
+pip install buildbot-slave
+```
+
 Setup master
 ------------
 # Create working environment for buildbot
