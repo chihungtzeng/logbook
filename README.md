@@ -11,7 +11,8 @@ Logs
 --
 
 2018
-* 3/12~3/15 小犬出生，放下手邊所有工作。
+* 4/25 研究如何從Python call C的function (為了加快程式的速度)
+* 3/12~4/25 小犬出生，放下手邊所有工作。
 * 3/11 預計：研究buildbot以建出一個work flow.實際: Done. 原本的test environment寫得比較自由，沒有考慮到buildbot會把repository命名為build, 造成測試程式不會執行，把這個情況考慮進test plan裡才算整合完成。
 * 3/10 預計：研究phabricator, git push, code review要如何整合。實際：Done. phabricator那邊主要是做code review, review完了之後，user還是要自己執行git commit and git push。
   * 為了控制那些commit可以push到remote repository, 在remote repository那邊要設好pre-receive hook, 只要hook return 1, 上code的人就無法把成功執行git push.
