@@ -11,6 +11,7 @@ Logs
 --
 
 2018
+* 4/26 成功更新中文字典檔，現已有1393506 個詞彙。
 * 4/25 研究如何從Python call C的function (為了加快程式的速度)
 * 3/12~4/25 小犬出生，放下手邊所有工作。
 * 3/11 預計：研究buildbot以建出一個work flow.實際: Done. 原本的test environment寫得比較自由，沒有考慮到buildbot會把repository命名為build, 造成測試程式不會執行，把這個情況考慮進test plan裡才算整合完成。
