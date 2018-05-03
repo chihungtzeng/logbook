@@ -11,6 +11,9 @@ Logs
 --
 
 2018
+* 5/3 研究如何把python unittest匯整成單一個process並把所有test都執行完，最後發現 nose 最方便使用，惟nose不能指定目錄，要用 test/unittest*.py 的方式才可以執行所有unittest，這點和官方文件講得不太一樣。合在同一process執行完ut的時間共是27s，相較於用一個process去run一個ut所花的38s, 效能改進約30%.
+* 5/2 完成 header 的完整parsing，現可抽出更多的欄位。
+* 4/28 開始研究smart reply是怎麼做的。
 * 4/27 聽到北宋時期的好水川大戰的故事，覺得有趣，故先記下來。
 * 4/26 成功更新中文字典檔，現已有1393506 個詞彙。
 * 4/25 研究如何從Python call C的function (為了加快程式的速度)
