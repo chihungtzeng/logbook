@@ -11,7 +11,10 @@ Logs
 --
 
 2018
+* 5/10 完成自動摘要和文件之間的整合及顯示。
+* 5/9 終於有機會把文件顯示的功能弄回來了，目前已完成統一Template的寫法。
 * 5/3 研究如何把python unittest匯整成單一個process並把所有test都執行完，最後發現 nose 最方便使用，惟nose不能指定目錄，要用 test/unittest*.py 的方式才可以執行所有unittest，這點和官方文件講得不太一樣。合在同一process執行完ut的時間共是27s，相較於用一個process去run一個ut所花的38s, 效能改進約30%.
+  * 研究 buildbot 的 API, 取資料的話用 curl http://hostname:8010/api/v2/builds/160/steps/1/logs/stdio/raw 之類的方式。
 * 5/2 完成 header 的完整parsing，現可抽出更多的欄位。
 * 4/28 開始研究smart reply是怎麼做的。
 * 4/27 聽到北宋時期的好水川大戰的故事，覺得有趣，故先記下來。
