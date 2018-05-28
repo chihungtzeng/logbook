@@ -11,6 +11,7 @@ Logs
 --
 
 2018
+* 5/28 實驗multiprocessing.Pool的加速能力，程式放在[這裡](code/20180528/pool_example.py)。程式故意用純數值運算，最後的結論是使用Pool快了一點，但差距不大，但在API的參數設計這件事會受到限制，雖有方法可解，但用python就是希望可以快點把功能做出來，兩相權衡下，若程式沒有涉及IO等情況，用單一process去跑會比較實際一些。
 * 5/10 完成自動摘要和文件之間的整合及顯示。
 * 5/9 終於有機會把文件顯示的功能弄回來了，目前已完成統一Template的寫法。
 * 5/3 研究如何把python unittest匯整成單一個process並把所有test都執行完，最後發現 nose 最方便使用，惟nose不能指定目錄，要用 test/unittest*.py 的方式才可以執行所有unittest，這點和官方文件講得不太一樣。合在同一process執行完ut的時間共是27s，相較於用一個process去run一個ut所花的38s, 效能改進約30%.
