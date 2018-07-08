@@ -11,6 +11,9 @@ Logs
 --
 
 2018
+* 7/8 找了一下如何把網頁轉成pdf的方式，看來看去，還是透過chromium外加python的subprocess最簡便。指令如下 /usr/lib64/chromium-browser/chrome --no-sandbox --headless --disable-gpu --disable-extensions --print-to-pdf=ouput.pdf your-url, 若要存成圖檔，則用--screenshot=xx.png取代--print-to-pdf的參數。
+  * --disable-extensions 的用意是要減少啟動chrome的overhead.
+  * -no-sandbox: 避免permission問題。
 * 7/4 搞定ssl憑證，把lighttpd的ssl安全層級最高到B的問題解決掉！
 * 7/2 最近花好多時間顧小孩，工作做的斷斷續續的，近來才較有空，一日搞定網站的基礎設定，包括dns, https, uwsgi等。
 * 5/28 實驗multiprocessing.Pool的加速能力，程式放在[這裡](code/20180528/pool_example.py)。程式故意用純數值運算，最後的結論是使用Pool快了一點，但差距不大，但在API的參數設計這件事會受到限制，雖有方法可解，但用python就是希望可以快點把功能做出來，兩相權衡下，若程式沒有涉及IO等情況，用單一process去跑會比較實際一些。
