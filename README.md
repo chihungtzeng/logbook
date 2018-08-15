@@ -11,6 +11,7 @@ Logs
 --
 
 2018
+* 8/14 近日在思考一個基本問題，資訊理論裡的Entropy定義為什麼和熱力學裡的Entroy公式不同，Shanon當初是怎麼想的？Max Entroy和Min Entropy的應用場景為何以及如何計算，以及Huffman coding如何和Entropy搭上線的? 部分問題已想得差不多了，也許要找個機會把自己的心得寫下來。
 * 8/13 小玩sklearn裡的Logistic Regression和Random Forests, 題目是給名字猜姓別，除了算出一個結果以外，另外試著把model的內部資料倒出來，看是那個字最男性化（雄、豪、龍）、女性化（妤、婷、淑）和中性化（之、丸、諳）。
 * 7/8 找了一下如何把網頁轉成pdf的方式，看來看去，還是透過chromium外加python的subprocess最簡便。指令如下 /usr/lib64/chromium-browser/chrome --no-sandbox --headless --disable-gpu --disable-extensions --print-to-pdf=ouput.pdf your-url, 若要存成圖檔，則用--screenshot=xx.png取代--print-to-pdf的參數。
   * --disable-extensions 的用意是要減少啟動chrome的overhead.
