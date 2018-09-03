@@ -11,6 +11,7 @@ Logs
 --
 
 2018
+* 9/1 終於想出為什麼1個request會被執行3次的原因了，因為ajax送出的時候，沒有出現loading icon等提示，所以困惑的使用者多點了幾次送出按鈕，故只要UI那邊小改一下，bug就解決了。
 * 8/18 在研究char-rnn時意外發現一個很好的tutorial, http://karpathy.github.io/neuralnets/
 * 8/16 讓google的sitemap對我的網站作用起來；改Machine Learning的程式架構，用一個BaseClass搭abc實現abstract method。
 * 8/14 近日在思考一個基本問題，資訊理論裡的Entropy定義為什麼和熱力學裡的Entroy公式不同，Shanon當初是怎麼想的？Max Entroy和Min Entropy的應用場景為何以及如何計算，以及Huffman coding如何和Entropy搭上線的? 部分問題已想得差不多了，也許要找個機會把自己的心得寫下來。
