@@ -11,6 +11,7 @@ Logs
 --
 
 2018
+* 9/13 大致了解為什麼back propagation時，遇到matrix相乘的情況時，propagate的數值是用transpose再乘上另一個配對的matrix而來。現在雖然有各種framework可以讓我們不用寫程式去處理back propagation，但理解如何計算及其背後的理由後，就不會被framework綁住了。
 * 9/1 終於想出為什麼1個request會被執行3次的原因了，因為ajax送出的時候，沒有出現loading icon等提示，所以困惑的使用者多點了幾次送出按鈕，故只要UI那邊小改一下，bug就解決了。
 * 8/18 在研究char-rnn時意外發現一個很好的tutorial, http://karpathy.github.io/neuralnets/
 * 8/16 讓google的sitemap對我的網站作用起來；改Machine Learning的程式架構，用一個BaseClass搭abc實現abstract method。
