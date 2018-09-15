@@ -1,0 +1,18 @@
+5 Neural networks:
+
+SVM (Support Vector Machines)
+    -- Facer
+GBDT (Gradient-Boosted Decision Trees)
+    -- Sigma
+MLP (Multi-Layer Perceptron)
+    -- News feed
+    -- Ads
+    -- Search
+    -- Sigma
+CNN (Convolutional Neural Nets)
+    -- Facer
+    -- Lumos
+RNN (Recurrent Neural Nets)
+    -- Language Translation
+    -- Speech Recording
+    -- Content understanding
