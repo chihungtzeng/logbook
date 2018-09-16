@@ -1,0 +1,8 @@
+Frameworks
+    -- caffe
+    -- tensorflow
+    -- pytorch
+    -- keras
+
+Online competition platform
+    -- Kaggle
