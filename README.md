@@ -11,13 +11,15 @@ Logs
 --
 
 2018
-* 9/18 成功在AMD Ryzen 5的機器上compile glow, 關鍵是使用-DGLOW_WITH_CPU=0
+* 9/18 成功在AMD Ryzen 5的機器上compile glow, 關鍵是使用-DGLOW_WITH_CPU=0. 但char-rnn跑不完，原因待查。
 ```
 cd /path/to/glow
 mkdir -p out && cd out
 cmake -DGLOW_WITH_CPU=0 ..
 make -j `nproc`
 ```
+* 9/18 學到了numpy各種奇特又博大精深的語法及設計，有些像是np.sum(a, axis=0)需要上網查一下為什麼這樣子代表column sum，要不然很容易忘記。
+* 9/18 查了一下如何把字元畫成圖，程式出乎意料得簡單，放在[這裡](code/20180918/draw_chn_char.py)
 * 9/14 發現char-rnn的預設gradient計算方式是adagrad, 不是sgd, 上網查了一下，還有其他變型的gradient以及各別的優缺點，學到了些知識。
 * 9/13 大致了解為什麼back propagation時，遇到matrix相乘的情況時，propagate的數值是用transpose再乘上另一個配對的matrix而來。現在雖然有各種framework可以讓我們不用寫程式去處理back propagation，但理解如何計算及其背後的理由後，就不會被framework綁住了。
 * 9/1 終於想出為什麼1個request會被執行3次的原因了，因為ajax送出的時候，沒有出現loading icon等提示，所以困惑的使用者多點了幾次送出按鈕，故只要UI那邊小改一下，bug就解決了。
