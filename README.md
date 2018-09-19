@@ -11,6 +11,7 @@ Logs
 --
 
 2018
+* 9/19 把bias trick再想過一遍，雖然實務上沒有太大的幫助，但卻是個可以簡化數學式，讓論文看起來簡潔的好招式。
 * 9/18 成功在AMD Ryzen 5的機器上compile glow, 關鍵是使用-DGLOW_WITH_CPU=0. 但char-rnn跑不完，原因待查。
 ```
 cd /path/to/glow
