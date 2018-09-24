@@ -1,5 +1,5 @@
 Frameworks
-    -- caffe
+    -- caffe (popular ConvNet library)
     -- tensorflow
     -- pytorch
     -- keras
