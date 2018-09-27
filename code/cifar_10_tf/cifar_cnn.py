@@ -75,15 +75,16 @@ def main(_):
         dataset = tf.data.Dataset.from_tensor_slices((test_x, test_y))
         return dataset
     eval_results = model.evaluate(input_fn=lambda: _eval_input_fn(test_x, test_y))
-
     print('\nEvaluation results:\n\t%s\n' % eval_results)
 
-    # Export the model
-    #image = tf.placeholder(tf.float32, [None, 32, 32])
-    #input_fn = tf.estimator.export.build_raw_serving_input_receiver_fn({
-    #    'image': image,
-    #})
-    #model.export_savedmodel("./model-export", input_fn)
+    # Predict
+    def _predict_input_fn(test_x):
+        test_x = test_x[0:3]
+        dataset = tf.data.Dataset.from_tensor_slices(test_x)
+        return dataset
+    results = model.predict(input_fn=lambda: _predict_input_fn(test_x))
+    for item in results:
+        print(item)
 
 
 if __name__ == "__main__":
