@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 """
 Convolutional Network for classifying CIFAR-10 Images.
+Current result: {'accuracy': 0.3798, 'loss': 2.430447, 'global_step': 800}
 """
+import numpy as np
 import tensorflow as tf
 from cifar_reader import load_cifar_from_pickle
 
@@ -24,18 +26,19 @@ def cifar_cnn_model(features, labels, mode):
     pool1 = tf.layers.max_pooling2d(inputs=conv3_64,
                                     pool_size=[2, 2], strides=2)
     pool1_flat = tf.reshape(pool1, [-1, 16 * 16 * 64])
-    logits = tf.layers.dense(inputs=pool1_flat, units=10)
+    dense = tf.layers.dense(inputs=pool1_flat, units=1024)
+    dropout = tf.layers.dropout(inputs=dense, rate=0.5,
+                                training=mode == tf.estimator.ModeKeys.TRAIN)
+    logits = tf.layers.dense(inputs=dropout, units=10)
     predictions = {"classes": tf.argmax(logits, axis=1),
                    "probabilities": tf.nn.softmax(logits, name="softmax_tensor")}
 
     if mode == tf.estimator.ModeKeys.PREDICT:
         return tf.estimator.EstimatorSpec(mode=mode, predictions=predictions)
-    print("logits shape: {}".format(logits.shape))
-    print("label shape: {}".format(labels.shape))
     loss = tf.losses.sparse_softmax_cross_entropy(
         labels=labels, logits=logits)
     if mode == tf.estimator.ModeKeys.TRAIN:
-        optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.001)
+        optimizer = tf.train.AdamOptimizer(learning_rate=0.001)
         train_op = optimizer.minimize(loss=loss,
                                       global_step=tf.train.get_global_step())
         return tf.estimator.EstimatorSpec(mode=mode, loss=loss,
@@ -50,12 +53,21 @@ def main(_):
     """
     Prog entry.
     """
-    model = tf.estimator.Estimator(model_fn=cifar_cnn_model, model_dir="/mnt/ramdisk/cifar10")
-    train_x, train_y = get_training_data("data_batch_1")
+    model = tf.estimator.Estimator(model_fn=cifar_cnn_model, model_dir="./cifar-temp")
     def _train_input_fn(train_x, train_y, batch_size=1000):
         dataset = tf.data.Dataset.from_tensor_slices((train_x, train_y))
-        return dataset.shuffle(1000).repeat(count=32).batch(batch_size)
-    model.train(input_fn=lambda: _train_input_fn(train_x, train_y))
+        return dataset.shuffle(1000).repeat(count=16).batch(batch_size)
+    train_x = []
+    train_y = []
+    for _ in range(1, 6):
+        file_name = "data_batch_{}".format(_)
+        _x, _y = get_training_data(file_name)
+        train_x.append(_x)
+        train_y.append(_y)
+        print("Train with {}".format(file_name))
+    _train_x = np.vstack(train_x)
+    _train_y = np.hstack(train_y)
+    model.train(input_fn=lambda: _train_input_fn(_train_x, _train_y))
 
     test_x, test_y = get_training_data("test_batch")
     def _eval_input_fn(test_x, test_y):
@@ -71,8 +83,7 @@ def main(_):
     #input_fn = tf.estimator.export.build_raw_serving_input_receiver_fn({
     #    'image': image,
     #})
-    #model.export_savedmodel("/mnt/ramdisk/cifar10_model", input_fn)
-    #print("Saved to /mnt/ramdisk/cifar10_model")
+    #model.export_savedmodel("./model-export", input_fn)
 
 
 if __name__ == "__main__":
