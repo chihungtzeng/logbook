@@ -53,7 +53,7 @@ def main(_):
     """
     Prog entry.
     """
-    model = tf.estimator.Estimator(model_fn=cifar_cnn_model, model_dir="./cifar-temp")
+    model = tf.estimator.Estimator(model_fn=cifar_cnn_model, model_dir="./model_export")
     def _train_input_fn(train_x, train_y, batch_size=1000):
         dataset = tf.data.Dataset.from_tensor_slices((train_x, train_y))
         return dataset.shuffle(1000).repeat(count=16).batch(batch_size)
