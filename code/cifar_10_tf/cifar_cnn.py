@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Convolutional Network for classifying CIFAR-10 Images.
-Current result: {'accuracy': 0.3798, 'loss': 2.430447, 'global_step': 800}
+Current result: {'accuracy': 0.4488, 'loss': 2.8088174, 'global_step': 800}
 """
 import numpy as np
 import tensorflow as tf
@@ -21,11 +21,11 @@ def cifar_cnn_model(features, labels, mode):
     """
     input_layer = tf.reshape(features, [-1, 32, 32, 3])
     conv3_64 = tf.layers.conv2d(
-        inputs=input_layer, filters=64, kernel_size=[3, 3], padding="same",
+        inputs=input_layer, filters=32, kernel_size=[3, 3], padding="same",
         activation=tf.nn.relu)
     pool1 = tf.layers.max_pooling2d(inputs=conv3_64,
                                     pool_size=[2, 2], strides=2)
-    pool1_flat = tf.reshape(pool1, [-1, 16 * 16 * 64])
+    pool1_flat = tf.reshape(pool1, [-1, 16 * 16 * 32])
     dense = tf.layers.dense(inputs=pool1_flat, units=1024)
     dropout = tf.layers.dropout(inputs=dense, rate=0.5,
                                 training=mode == tf.estimator.ModeKeys.TRAIN)
@@ -76,15 +76,15 @@ def main(_):
         return dataset
     eval_results = model.evaluate(input_fn=lambda: _eval_input_fn(test_x, test_y))
     print('\nEvaluation results:\n\t%s\n' % eval_results)
-
-    # Predict
-    def _predict_input_fn(test_x):
-        test_x = test_x[0:3]
-        dataset = tf.data.Dataset.from_tensor_slices(test_x)
-        return dataset
-    results = model.predict(input_fn=lambda: _predict_input_fn(test_x))
-    for item in results:
-        print(item)
+#
+# Predict
+#    def _predict_input_fn(test_x):
+#        test_x = test_x[0:3]
+#        dataset = tf.data.Dataset.from_tensor_slices(test_x)
+#        return dataset
+#    results = model.predict(input_fn=lambda: _predict_input_fn(test_x))
+#    for item in results:
+#        print(item)
 
 
 if __name__ == "__main__":
