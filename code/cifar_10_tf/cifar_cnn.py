@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Convolutional Network for classifying CIFAR-10 Images.
-Current result: {'accuracy': 0.4488, 'loss': 2.8088174, 'global_step': 800}
+Current result: {'accuracy': 0.4537, 'loss': 1.5074927, 'global_step': 200}
 """
 import numpy as np
 import tensorflow as tf
@@ -20,14 +20,21 @@ def cifar_cnn_model(features, labels, mode):
     Model for CNN.
     """
     input_layer = tf.reshape(features, [-1, 32, 32, 3])
-    conv3_64 = tf.layers.conv2d(
-        inputs=input_layer, filters=32, kernel_size=[3, 3], padding="same",
+    conv1_64 = tf.layers.conv2d(
+        inputs=input_layer, filters=64, kernel_size=[5, 5], padding="same",
         activation=tf.nn.relu)
-    pool1 = tf.layers.max_pooling2d(inputs=conv3_64,
+    pool1 = tf.layers.max_pooling2d(inputs=conv1_64,
                                     pool_size=[2, 2], strides=2)
-    pool1_flat = tf.reshape(pool1, [-1, 16 * 16 * 32])
-    dense = tf.layers.dense(inputs=pool1_flat, units=1024)
-    dropout = tf.layers.dropout(inputs=dense, rate=0.5,
+    conv2_64 = tf.layers.conv2d(
+        inputs=pool1, filters=64, kernel_size=[5, 5], padding="same",
+        activation=tf.nn.relu)
+    pool2 = tf.layers.max_pooling2d(inputs=conv2_64,
+                                    pool_size=[2, 2], strides=2)
+
+    pool2_flat = tf.reshape(pool2, [-1, 8 * 8 * 64])
+
+    dense = tf.layers.dense(inputs=pool2_flat, units=128, activation=tf.nn.relu)
+    dropout = tf.layers.dropout(inputs=dense, rate=0.4,
                                 training=mode == tf.estimator.ModeKeys.TRAIN)
     logits = tf.layers.dense(inputs=dropout, units=10)
     predictions = {"classes": tf.argmax(logits, axis=1),
@@ -56,7 +63,7 @@ def main(_):
     model = tf.estimator.Estimator(model_fn=cifar_cnn_model, model_dir="./model_export")
     def _train_input_fn(train_x, train_y, batch_size=1000):
         dataset = tf.data.Dataset.from_tensor_slices((train_x, train_y))
-        return dataset.shuffle(1000).repeat(count=16).batch(batch_size)
+        return dataset.shuffle(1000).repeat(count=4).batch(batch_size)
     train_x = []
     train_y = []
     for _ in range(1, 6):
