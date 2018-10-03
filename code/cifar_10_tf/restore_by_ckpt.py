@@ -3,16 +3,7 @@
 Convolutional Network for classifying CIFAR-10 Images.
 Current result: {'accuracy': 0.4537, 'loss': 1.5074927, 'global_step': 200}
 """
-import numpy as np
 import tensorflow as tf
-from cifar_reader import load_cifar_from_pickle
-
-def get_training_data(file_name):
-    """
-    Get training data and the corresponding categories.
-    """
-    x_data, y_data = load_cifar_from_pickle(file_name)
-    return x_data, y_data
 
 
 def cifar_cnn_model(features, labels, mode):
@@ -56,44 +47,25 @@ def cifar_cnn_model(features, labels, mode):
     return tf.estimator.EstimatorSpec(mode=mode, loss=loss, eval_metric_ops=eval_metric_ops)
 
 
-def main(_):
+def main():
     """
     Prog entry.
     """
-    model = tf.estimator.Estimator(model_fn=cifar_cnn_model, model_dir="./model_export")
-    def _train_input_fn(train_x, train_y, batch_size=1000):
-        dataset = tf.data.Dataset.from_tensor_slices((train_x, train_y))
-        return dataset.shuffle(1000).repeat(count=4).batch(batch_size)
-    train_x = []
-    train_y = []
-    for _ in range(1, 3):
-        file_name = "data_batch_{}".format(_)
-        _x, _y = get_training_data(file_name)
-        train_x.append(_x)
-        train_y.append(_y)
-        print("Train with {}".format(file_name))
-    _train_x = np.vstack(train_x)
-    _train_y = np.hstack(train_y)
-    model.train(input_fn=lambda: _train_input_fn(_train_x, _train_y))
+    #model = tf.estimator.Estimator(model_fn=cifar_cnn_model, model_dir="./model_export")
+    #saver = tf.train.Saver()
+    saver = tf.train.import_meta_graph("./model_export/model.ckpt-80.meta")
 
-    test_x, test_y = get_training_data("test_batch")
-    def _eval_input_fn(test_x, test_y):
-        test_y = test_y.reshape(10000, 1)
-        dataset = tf.data.Dataset.from_tensor_slices((test_x, test_y))
-        return dataset
-    eval_results = model.evaluate(input_fn=lambda: _eval_input_fn(test_x, test_y))
-    print('\nEvaluation results:\n\t%s\n' % eval_results)
-#
-# Predict
-#    def _predict_input_fn(test_x):
-#        test_x = test_x[0:3]
-#        dataset = tf.data.Dataset.from_tensor_slices(test_x)
-#        return dataset
-#    results = model.predict(input_fn=lambda: _predict_input_fn(test_x))
-#    for item in results:
-#        print(item)
-
+    # Use the saver object normally after that.
+    with tf.Session() as sess:
+        # Initialize v1 since the saver will not.
+        saver.restore(sess, "model_export/model.ckpt-80")
+        # print("all values %s" % sess.run(tf.global_variables()))
+        for v in tf.trainable_variables():
+            print(v.name)
+            print(v.shape)
+            if v.name == "logits/bias:0":
+                print(v.eval())
+        print(sess.run(tf.get_default_graph().get_tensor_by_name("logits/bias:0")))
 
 if __name__ == "__main__":
-    tf.logging.set_verbosity(tf.logging.INFO)
-    tf.app.run(main)
+    main()
