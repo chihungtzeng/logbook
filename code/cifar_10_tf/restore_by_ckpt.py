@@ -3,6 +3,7 @@
 Convolutional Network for classifying CIFAR-10 Images.
 Current result: {'accuracy': 0.4537, 'loss': 1.5074927, 'global_step': 200}
 """
+import pprint
 import tensorflow as tf
 
 
@@ -56,16 +57,14 @@ def main():
     saver = tf.train.import_meta_graph("./model_export/model.ckpt-80.meta")
 
     # Use the saver object normally after that.
+    var_weights = {}
     with tf.Session() as sess:
         # Initialize v1 since the saver will not.
         saver.restore(sess, "model_export/model.ckpt-80")
         # print("all values %s" % sess.run(tf.global_variables()))
-        for v in tf.trainable_variables():
-            print(v.name)
-            print(v.shape)
-            if v.name == "logits/bias:0":
-                print(v.eval())
-        print(sess.run(tf.get_default_graph().get_tensor_by_name("logits/bias:0")))
+        for _v in tf.trainable_variables():
+            var_weights[_v.name] = _v.eval()
+    pprint.pprint(var_weights)
 
 if __name__ == "__main__":
     main()
