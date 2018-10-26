@@ -11,6 +11,7 @@ Logs
 --
 
 2018
+* 10/26 找尋可以操控DOM的python library, 發現了AdvancedHTMLParser這個套件，完全符合我的需求，寫了一個簡單範例放在[這裡](code/web/adv_html_parser.py).
 * 9/19 把bias trick再想過一遍，雖然實務上沒有太大的幫助，但卻是個可以簡化數學式，讓論文看起來簡潔的好招式。
 * 9/18 成功在AMD Ryzen 5的機器上compile glow, 關鍵是使用-DGLOW_WITH_CPU=0. 但char-rnn跑不完，原因待查。
 ```
