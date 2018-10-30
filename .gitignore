@@ -5,3 +5,4 @@ out
 build
 cifar-10-batches-py
 model_export
+data
