@@ -1,76 +1,125 @@
+# -*- coding: utf-8 -*-
+"""
+Predict handwritten graph by using RNN model.
+"""
+import argparse
 import tensorflow as tf
 from tensorflow.contrib import rnn
 
 #import mnist dataset
 from tensorflow.examples.tutorials.mnist import input_data
-mnist=input_data.read_data_sets("data",one_hot=True)
 
 #define constants
-#unrolled through 28 time steps
-time_steps=28
-#hidden LSTM units
-num_units=128
-#rows of 28 pixels
-n_input=28
-#learning rate for adam
-learning_rate=0.001
-#mnist is meant to be classified in 10 classes(0-9).
-n_classes=10
-#size of batch
-batch_size=128
-#weights and biases of appropriate shape to accomplish above task
-out_weights=tf.Variable(tf.random_normal([num_units,n_classes]))
-out_bias=tf.Variable(tf.random_normal([n_classes]))
+_NUM_ROWS = 28
+_NUM_HIDDEN_STATES = 128  # hidden LSTM units
+_NUM_ROW_PIXELS = 28  # rows of 28 pixels
+_LEARNING_RATE = 0.001  # learning rate for adam
+_NUM_CLASSES = 10  # mnist is meant to be classified in 10 classes(0-9).
+_BATCH_SIZE = 128 # size of batch
 
 #defining placeholders
 #input image placeholder
-x=tf.placeholder("float",[None,time_steps,n_input])
+_X = tf.placeholder("float", [None, _NUM_ROWS, _NUM_ROW_PIXELS])
 #input label placeholder
-y=tf.placeholder("float",[None,n_classes])
+_Y = tf.placeholder("float", [None, _NUM_CLASSES])
 
-#processing the input tensor from [batch_size,n_steps,n_input] to "time_steps" number of [batch_size,n_input] tensors
-input=tf.unstack(x ,time_steps,1)
 
-#defining the network
-lstm_layer=rnn.BasicLSTMCell(num_units,forget_bias=1)
-outputs,_=rnn.static_rnn(lstm_layer,input,dtype="float32")
+def __init_graph():
+    # weights and biases of appropriate shape to accomplish above task
+    weights = {
+        "out": tf.Variable(tf.random_normal([_NUM_HIDDEN_STATES, _NUM_CLASSES]))
+    }
 
-#converting last output of dimension [batch_size,num_units] to [batch_size,n_classes] by out_weight multiplication
-prediction=tf.matmul(outputs[-1],out_weights)+out_bias
+    biases = {
+        "out": tf.Variable(tf.random_normal([_NUM_CLASSES]))
+    }
+    def _rnn_model(_weights, _biases):
+        # processing the input tensor from [_BATCH_SIZE,n_steps,_NUM_ROW_PIXELS]
+        # to "_NUM_ROWS" number of [_BATCH_SIZE,_NUM_ROW_PIXELS] tensors
+        _input = tf.unstack(_X, _NUM_ROWS, 1)
 
-#loss_function
-loss=tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=prediction,labels=y))
-#optimization
-opt=tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(loss)
+        # defining the network
+        lstm_layer = rnn.BasicLSTMCell(_NUM_HIDDEN_STATES, forget_bias=1)
+        outputs, _ = rnn.static_rnn(lstm_layer, _input, dtype="float32")
 
-#model evaluation
-correct_prediction=tf.equal(tf.argmax(prediction,1),tf.argmax(y,1))
-accuracy=tf.reduce_mean(tf.cast(correct_prediction,tf.float32))
+        # converting last output of dimension [_BATCH_SIZE,_NUM_HIDDEN_STATES] to
+        # [_BATCH_SIZE,_NUM_CLASSES] by out_weight multiplication
+        return tf.matmul(outputs[-1], weights["out"]) + biases["out"]
 
-#initialize variables
-init=tf.global_variables_initializer()
-with tf.Session() as sess:
-    sess.run(init)
-    iter=1
-    while iter<800:
-        batch_x,batch_y=mnist.train.next_batch(batch_size=batch_size)
+    prediction = _rnn_model(weights, biases)
+    # loss_function
+    loss = tf.reduce_mean(
+        tf.nn.softmax_cross_entropy_with_logits(logits=prediction, labels=_Y))
+    # optimization
+    opt = tf.train.AdamOptimizer(learning_rate=_LEARNING_RATE).minimize(loss)
 
-        batch_x=batch_x.reshape((batch_size,time_steps,n_input))
+    # model evaluation
+    correct_prediction = tf.equal(tf.argmax(prediction, 1), tf.argmax(_Y, 1))
+    accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
-        sess.run(opt, feed_dict={x: batch_x, y: batch_y})
+    # initialize variables
+    init = tf.global_variables_initializer()
+    return init, opt, accuracy, loss
 
-        if iter %10==0:
-            acc=sess.run(accuracy,feed_dict={x:batch_x,y:batch_y})
-            los=sess.run(loss,feed_dict={x:batch_x,y:batch_y})
-            print("For iter ",iter)
-            print("Accuracy ",acc)
-            print("Loss ",los)
-            print("__________________")
 
-        iter=iter+1
+def train():
+    """
+    train and save model.
+    """
+    init, opt, accuracy, loss = __init_graph()
+    mnist = input_data.read_data_sets("data", one_hot=True)
+    with tf.Session() as sess:
+        sess.run(init)
+        loop_count = 1
+        while loop_count < 800:
+            batch_x, batch_y = mnist.train.next_batch(batch_size=_BATCH_SIZE)
+            batch_x = batch_x.reshape(
+                (_BATCH_SIZE, _NUM_ROWS, _NUM_ROW_PIXELS))
+            sess.run(opt, feed_dict={_X: batch_x, _Y: batch_y})
 
-    #calculating test accuracy
-    test_data = mnist.test.images[:128].reshape((-1, time_steps, n_input))
-    test_label = mnist.test.labels[:128]
-    print("Testing Accuracy:", sess.run(accuracy, feed_dict={x: test_data, y: test_label}))
+            if loop_count % 10 == 0:
+                acc = sess.run(accuracy, feed_dict={_X: batch_x, _Y: batch_y})
+                los = sess.run(loss, feed_dict={_X: batch_x, _Y: batch_y})
+                print("For loop_count ", loop_count)
+                print("Accuracy: {}, Loss: {}".format(acc, los))
+                print("-" * 20)
+            loop_count += 1
+        saver = tf.train.Saver()
+        save_path = saver.save(sess, "model_export/model.ckpt")
+        print("save model to ", save_path)
 
+
+def evaluate():
+    """ Evaluate the accuracy of the model."""
+    mnist = input_data.read_data_sets("data", one_hot=True)
+    _, _, accuracy, _ = __init_graph()
+    with tf.Session() as sess:
+        saver = tf.train.Saver()
+        print("restore from model.ckpt")
+        saver.restore(sess, "model_export/model.ckpt")
+        # calculating test accuracy
+        test_data = mnist.test.images.reshape(
+            (-1, _NUM_ROWS, _NUM_ROW_PIXELS))
+        test_label = mnist.test.labels
+        print("Testing Accuracy:", sess.run(
+            accuracy, feed_dict={_X: test_data, _Y: test_label}))
+
+
+def main():
+    """
+    Prog entry.
+    """
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--train", action="store_true")
+    parser.add_argument("--evaluate", action="store_true")
+    args = parser.parse_args()
+    if args.train:
+        train()
+    elif args.evaluate:
+        evaluate()
+    else:
+        parser.print_help()
+
+
+if __name__ == "__main__":
+    main()
