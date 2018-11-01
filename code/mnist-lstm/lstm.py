@@ -87,6 +87,8 @@ def train():
         saver = tf.train.Saver()
         save_path = saver.save(sess, "model_export/model.ckpt")
         print("save model to ", save_path)
+        writer = tf.summary.FileWriter('model_export/', sess.graph)
+        writer.close()
 
 
 def evaluate():
