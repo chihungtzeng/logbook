@@ -27,11 +27,11 @@ _Y = tf.placeholder("float", [None, _NUM_CLASSES])
 def __init_graph():
     # weights and biases of appropriate shape to accomplish above task
     weights = {
-        "out": tf.Variable(tf.random_normal([_NUM_HIDDEN_STATES, _NUM_CLASSES]))
+        "out": tf.Variable(tf.random_normal([_NUM_HIDDEN_STATES, _NUM_CLASSES]), name="weights_out")
     }
 
     biases = {
-        "out": tf.Variable(tf.random_normal([_NUM_CLASSES]))
+        "out": tf.Variable(tf.random_normal([_NUM_CLASSES]), name="biases_out")
     }
     def _rnn_model(_weights, _biases):
         # processing the input tensor from [_BATCH_SIZE,n_steps,_NUM_ROW_PIXELS]
@@ -104,7 +104,19 @@ def evaluate():
             (-1, _NUM_ROWS, _NUM_ROW_PIXELS))
         test_label = mnist.test.labels
         print("Testing Accuracy:", sess.run(
-            accuracy, feed_dict={_X: test_data, _Y: test_label}))
+            accuracy, feed_dict={_X: test_data[:1], _Y: test_label[:1]}))
+
+
+def dump_var():
+    """ Evaluate the accuracy of the model."""
+    __init_graph()
+    with tf.Session() as sess:
+        saver = tf.train.Saver()
+        print("restore from model.ckpt")
+        saver.restore(sess, "model_export/model.ckpt")
+        for _v in tf.global_variables():
+            print(_v.name, _v.shape)
+
 
 
 def main():
@@ -114,11 +126,14 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--train", action="store_true")
     parser.add_argument("--evaluate", action="store_true")
+    parser.add_argument("--dump-var", action="store_true")
     args = parser.parse_args()
     if args.train:
         train()
     elif args.evaluate:
         evaluate()
+    elif args.dump_var:
+        dump_var()
     else:
         parser.print_help()
 
