@@ -36,7 +36,7 @@ def __init_graph():
     def _rnn_model(_weights, _biases):
         # processing the input tensor from [_BATCH_SIZE,n_steps,_NUM_ROW_PIXELS]
         # to "_NUM_ROWS" number of [_BATCH_SIZE,_NUM_ROW_PIXELS] tensors
-        _input = tf.unstack(_X, _NUM_ROWS, 1)
+        _input = tf.unstack(_X, _NUM_ROWS, 1, name="rnn_input")
 
         # defining the network
         lstm_layer = rnn.BasicLSTMCell(_NUM_HIDDEN_STATES, forget_bias=1)
@@ -104,7 +104,7 @@ def evaluate():
             (-1, _NUM_ROWS, _NUM_ROW_PIXELS))
         test_label = mnist.test.labels
         print("Testing Accuracy:", sess.run(
-            accuracy, feed_dict={_X: test_data[:1], _Y: test_label[:1]}))
+            accuracy, feed_dict={_X: test_data, _Y: test_label}))
 
 
 def dump_var():
