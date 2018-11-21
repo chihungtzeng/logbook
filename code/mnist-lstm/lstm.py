@@ -5,6 +5,7 @@ Predict handwritten graph by using RNN model.
 import argparse
 import tensorflow as tf
 from tensorflow.contrib import rnn
+import numpy as np
 
 #import mnist dataset
 from tensorflow.examples.tutorials.mnist import input_data
@@ -110,13 +111,15 @@ def evaluate():
 def dump_var():
     """ Evaluate the accuracy of the model."""
     __init_graph()
+    trainable_weights = {}
     with tf.Session() as sess:
         saver = tf.train.Saver()
         print("restore from model.ckpt")
         saver.restore(sess, "model_export/model.ckpt")
-        for _v in tf.global_variables():
+        for _v in tf.trainable_variables():
             print(_v.name, _v.shape)
-
+            trainable_weights[_v.name] = _v.eval()
+    np.savez_compressed("var_weights", trainable_weights=trainable_weights)
 
 
 def main():
