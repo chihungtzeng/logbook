@@ -11,9 +11,10 @@ Logs
 --
 
 2018
+* 12/1 學習GRU(Gated Recurrent Unit), 相較於Vanilla RNN, GRU解決了Vanishing Gradient的問題，相較於LSTM, GRU的好處是計算上較便宜且效果和LSTM相近。在GRU model裡，把\hat{h_t}想成下一個state的candidate會比較直觀。
 * 11/22 學習如何把tensorflow的model以native語言重新實作並布署，使用的例子是透過LSTM辨識mnist手寫字，過程中，本想用tensorboard看model內部是怎麼運作的，但在這個例子上, tensorboard只告訴我有28個tensor從這裡流向那裡的資訊，並不足夠完成任務，最終還是去看了tensorflow的python code, 這條路簡單多了，很快就讓我知道要怎麼進行。
   - 自刻的model算出來的結果和tensorflow算出來的一樣，但執行效率沒法比，同樣是算10000組的mnist，自刻的要算2分多鐘，tensorflow只算了8秒，看來只有在需要布署到嵌入式系統時，才有自刻model的需要。
-  - 在創建BasicLSTMCell時，預設的forget bias是1.0, 一般在談LSTM model時都不會提到有forget bias, 更不會提預設值為什麼是1.0而不是0, 可能要去翻tensorflow的commit history才會知道為什麼會這麼實作。
+  - 在創建BasicLSTMCell時，預設的forget bias是1.0, 一般在談LSTM model時都不會提到有forget bias, 更不會提預設值為什麼是1.0而不是0, 可能要去翻tensorflow的commit history才會知道為什麼會這麼實作。(後記：從commit history來看，預設為1.0等同於把預設行為設定為忘記。)
 * 10/28 發現scipy有實作kd-tree, 用起來也蠻方便的，寫了一個簡單的例子放在[這裡](code/kdtree/kdtree.py)
 * 10/26 找尋可以操控DOM的python library, 發現了AdvancedHTMLParser這個套件，完全符合我的需求，寫了一個簡單範例放在[這裡](code/web/adv_html_parser.py).
 * 9/19 把bias trick再想過一遍，雖然實務上沒有太大的幫助，但卻是個可以簡化數學式，讓論文看起來簡潔的好招式。
