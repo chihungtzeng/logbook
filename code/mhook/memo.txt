@@ -1,0 +1,4 @@
+query the size of dynamically allocated memory:
+    _msize: windows
+    malloc_size: mac os
+    malloc_usable_size: linux

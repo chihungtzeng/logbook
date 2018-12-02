@@ -1,0 +1,2 @@
+add_subdirectory(trivial_leak)
+add_subdirectory(trivial_leak_cpp)
