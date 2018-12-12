@@ -2,6 +2,8 @@
 """
 Parse 實價登錄
 """
+import io
+import html
 import logging
 import pprint
 from xml.etree import ElementTree
@@ -41,10 +43,17 @@ class BaseXMLParser(object):
         """
         self.xml_path = xml_path
 
-    def parse(self):
-        tree = ElementTree.parse(self.xml_path)
-        e_lvr_land = tree.getroot()
+    def __read_xml(self):
+        ret = ""
+        with io.open(self.xml_path, encoding="utf-8") as _fp:
+            ret = _fp.read()
+        ret = ret.replace("&amp;", "＆")
+        ret = ret.replace("&lt;", "＜")
+        ret = ret.replace("&gt;", "＞")
+        return html.unescape(ret)
 
+    def parse(self):
+        e_lvr_land = ElementTree.fromstring(self.__read_xml())
         for transaction_element in e_lvr_land:
             doc = {_.tag: _.text for _ in transaction_element}
             try:
