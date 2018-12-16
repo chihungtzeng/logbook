@@ -11,6 +11,7 @@ Logs
 --
 
 2018
+* 12/16 把實價登錄的資料parse出來，然後寫個簡單的query程式, 對某個戶數多的大樓的交易資料用一個大表格列出來，結果....有重覆的資料，也有應出現相同值但實際不是如此的資料，接下來就是資料清理和統計囉。
 * 12/1 學習GRU(Gated Recurrent Unit), 相較於Vanilla RNN, GRU解決了Vanishing Gradient的問題，相較於LSTM, GRU的好處是計算上較便宜且效果和LSTM相近。在GRU model裡，把\hat{h_t}想成下一個state的candidate會比較直觀。
 * 11/22 學習如何把tensorflow的model以native語言重新實作並布署，使用的例子是透過LSTM辨識mnist手寫字，過程中，本想用tensorboard看model內部是怎麼運作的，但在這個例子上, tensorboard只告訴我有28個tensor從這裡流向那裡的資訊，並不足夠完成任務，最終還是去看了tensorflow的python code, 這條路簡單多了，很快就讓我知道要怎麼進行。
   - 自刻的model算出來的結果和tensorflow算出來的一樣，但執行效率沒法比，同樣是算10000組的mnist，自刻的要算2分多鐘，tensorflow只算了8秒，看來只有在需要布署到嵌入式系統時，才有自刻model的需要。
