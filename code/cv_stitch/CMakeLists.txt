@@ -7,8 +7,10 @@ include_directories(
     ${OPENCV_INCLUDE_DIRS}
 )
 
-add_executable(imshow imshow_main.cpp)
+set(PROJ "imshow")
+add_executable(${PROJ} ${PROJ}_main.cpp)
+target_link_libraries(${PROJ} ${OpenCV_LIBRARIES})
 
-target_link_libraries(
-    imshow
-    ${OpenCV_LIBRARIES})
+set(PROJ "stitch")
+add_executable(${PROJ} ${PROJ}_main.cpp)
+target_link_libraries(${PROJ} ${OpenCV_LIBRARIES})
