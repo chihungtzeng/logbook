@@ -10,6 +10,29 @@ I use it to keep track of my activities as another form of dairy.
 Logs
 --
 
+2019
+* 2/17 檢查c++的type是否一致:
+```
+#include <type_traits>
+int main(int argc, char *argv[]) {
+    const int i = 1;
+    int const j = 2;
+    int k = 3;
+    static_assert(std::is_same<decltype(i), decltype(j)>::value, "type not equal");
+    static_assert(std::is_same<decltype(i), decltype(k)>::value, "type not equal");
+    return 0;
+}
+```
+static_assert會在compile time就吐出error:
+```
+clark@amd /mnt/ramdisk $ clang++  1.cpp
+1.cpp:7:5: error: static_assert failed due to requirement
+      'std::is_same<decltype(i), decltype(k)>::value' "type not equal"
+    static_assert(std::is_same<decltype(i), decltype(k)>::value, "type n...
+    ^             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+```
+
 2018
 * 12/16 把實價登錄的資料parse出來，然後寫個簡單的query程式, 對某個戶數多的大樓的交易資料用一個大表格列出來，結果....有重覆的資料，也有應出現相同值但實際不是如此的資料，接下來就是資料清理和統計囉。
 * 12/1 學習GRU(Gated Recurrent Unit), 相較於Vanilla RNN, GRU解決了Vanishing Gradient的問題，相較於LSTM, GRU的好處是計算上較便宜且效果和LSTM相近。在GRU model裡，把\hat{h_t}想成下一個state的candidate會比較直觀。
