@@ -1,0 +1,14 @@
+tar cv --files-from /dev/null | docker import - chtseng/scratch
+
+tar --numeric-owner -cf- /mnt/sda1/gentoo | docker import - gentoo:base
+
+
+FROM gentoo:base
+EXPOSE 22 # make SSH accessible, repeat for any port you're running a service on in this container
+ENTRYPOINT ["/usr/lib/systemd/systemd"]
+
+docker build -t gentoo:latest .
+
+
+PS:
+ROOT=/destination emerge --quiet dev-lang/php
