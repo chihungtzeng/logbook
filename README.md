@@ -10,6 +10,9 @@ I use it to keep track of my activities as another form of dairy.
 Logs
 --
 
+2020
+* 3/30 使用opencv把webcam的資料儲存, see code/opencv_webcam.
+
 2019
 * 11/13 完成cppcheck, cmake, buildbot整合，比預期來得順利。
 * 11/6 成功整合gitlab和buildbot，看來長久以來的問題可以得到舒緩了。
