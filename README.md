@@ -10,6 +10,10 @@ I use it to keep track of my activities as another form of dairy.
 Logs
 --
 
+2020
+* 5/24 開始設計怎麼做到自動偵測感知系統弱點的流程。
+* 5/21 從waymo的opendata研究他們是怎麼設計系統的，在一些細節上，他們果不其然得做得比我們好很多。
+
 2019
 * 11/13 完成cppcheck, cmake, buildbot整合，比預期來得順利。
 * 11/6 成功整合gitlab和buildbot，看來長久以來的問題可以得到舒緩了。
