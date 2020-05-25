@@ -11,9 +11,12 @@ Logs
 --
 
 2020
+<<<<<<< HEAD
 * 5/24 開始設計怎麼做到自動偵測感知系統弱點的流程。
 * 5/21 從waymo的opendata研究他們是怎麼設計系統的，在一些細節上，他們果不其然得做得比我們好很多。
+=======
 * 3/30 使用opencv把webcam的資料儲存, see code/opencv_webcam.
+>>>>>>> 416b5717e5b8a91bc014ca53ddaab5029b5b62cd
 
 2019
 * 11/13 完成cppcheck, cmake, buildbot整合，比預期來得順利。
