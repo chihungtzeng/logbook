@@ -11,6 +11,7 @@ Logs
 --
 
 2020
+* 5/25 部門在用的gitlab + buildbot如同預期得發揮作用，擋下了多次的亂上code.
 * 5/24 開始設計怎麼做到自動偵測感知系統弱點的流程。
 * 5/21 從waymo的opendata研究他們是怎麼設計系統的，在一些細節上，他們果不其然得做得比我們好很多。
 * 3/30 使用opencv把webcam的資料儲存, see code/opencv_webcam.
