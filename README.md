@@ -11,6 +11,7 @@ Logs
 --
 
 2020
+* 6/8 試圖仿照run-clang-tidy.py的方法，把程式改寫成threading+queue加速，但實際run起來還比原來的慢，後來改用multiprocessing的Pool, 終於把電腦裡的12核都用上了，程式一口氣加速10倍左右。
 * 6/3 偶然發現 [quick bench](http://quick-bench.com/) 這個網站，看起來應是搭配google benchmark做出來的，和 [compiler explorer](https://godbolt.org/) 有些類似，都是用來練習並觀察C++/C compiler行為的好工具。
 * 5/30 做出第一個 resin + led 的成果，我覺得每個爬山的朋友都有機緣看到有詩意的景象，所以主題就挑了星空下的鹿，過程中發生了一些意外，在把LED燈埋進樹脂後，線頭竟然斷了，只留下一點點電線在邊框上，只好拿出快20年都沒有用到的焊接技術，把線路接了起來。
 
