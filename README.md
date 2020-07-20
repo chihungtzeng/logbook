@@ -11,6 +11,20 @@ Logs
 --
 
 2020
+* 7/20 記錄一下c++裡的pmr
+
+```
+#include <memory_resource>
+#include <vector>
+
+int main(){
+  std::byte stack_buf[2048];
+  std::pmr::monotonic_buffer_resource rsrc(stack_buf, sizeof(stack_buf));
+  std::prm::vector<int> nums_pi{{3,1,4,1,5}, &rsrc};
+  std::prm::vector<int> nums_e{{2,7,1,8,2,8}, &rsrc};
+}
+```
+
 * 6/9 用 epoxy + 彩色石頭做紙鎮，效果還不錯，這次除了油性顏料外，還使用螢光劑和壓克力顏亮混色，但是後兩者都帶有些微的雜點顆粒，以後就乖乖用油性顏料就好了。
 
 ![Image of paper weight](images/paper_weight_480.jpg)
