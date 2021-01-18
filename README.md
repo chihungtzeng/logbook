@@ -10,6 +10,16 @@ I use it to keep track of my activities as another form of dairy.
 Logs
 --
 
+2021
+
+* 1/5
+
+Google 的免費空間被小孩的影片塞爆，促使我開始研究怎麼用樹莓派搭閒置的硬碟做NAS, 我只想要可以方便得把檔案從手機傳到電腦，直接用browser看圖片影片，以及只有內網才能存取; 一番survey後，覺得主流的openmediavault，pydio，nextcloud都和想要的結果有落差，反倒是自架server最簡單，整個弄起來一量，功耗只有4.5瓦，就算全天開機也花不了多少電費。 
+
+過程中還查了一下cloud的價格，google cloud 2TB的年費是3300元, NAS專用機則是看想買多好的，最便宜的是2500元，如果都是買全新的話，自己DIY在價格上沒有什麼優勢。不過買市面NAS也有預算以外的麻煩，限定內網使用的話發揮不出專業NAS機的長處，但讓外網能存取則要搞定憑證和security的種種雜事，如果不DIY的話，我想我會選google cloud或是AWS。
+
+![rpi_power.jpg](images/rpi_power.jpg)
+
 2020
 * 7/20 記錄一下c++裡的pmr
 
