@@ -12,6 +12,8 @@ Logs
 
 2021
 
+* 3/11 Try using zstd to do real-time compression. Hopefully it will be a better choice than snappy and lz4.
+
 * 1/5
 
 Google 的免費空間被小孩的影片塞爆，促使我開始研究怎麼用樹莓派搭閒置的硬碟做NAS, 我只想要可以方便得把檔案從手機傳到電腦，直接用browser看圖片影片，以及只有內網才能存取; 一番survey後，覺得主流的openmediavault，pydio，nextcloud都和想要的結果有落差，反倒是自架server最簡單，整個弄起來一量，功耗只有4.5瓦，就算全天開機也花不了多少電費。 
